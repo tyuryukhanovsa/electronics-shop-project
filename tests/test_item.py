@@ -22,13 +22,13 @@ def test_apply_discount(test_data):
     assert test_data.price == 21000
 
 
-def test_name():
+def test_name(test_data):
     test_data.name = 'Смартфон'
     assert test_data.name == 'Смартфон'
 
     # длина наименования товара больше 10 символов
-    test_data.name = 'СуперСмартфон'
-    # assert test_data.name == 'СуперСмарт'  # не понимаю как заставить отработать тест здесь после ввода длина товара не меняется
+    test_data.name = 'СуперCмартфон'
+    assert test_data.name == 'СуперCмарт'
 
 
 def test_string_to_number():
@@ -37,6 +37,12 @@ def test_string_to_number():
     assert Item.string_to_number('5.5') == 5
 
 
-def test_instantiate_from_csv(csv_file): # отдельно этот тест отрабатывает, но когда запускаю все тесты подряд то он выдает ошибку вероятно добавляя еще два экземпляра
+def test_instantiate_from_csv(csv_file):
+    Item.all = []
     Item.instantiate_from_csv(csv_file)  # создание объектов из данных файла
     assert len(Item.all) == 5
+
+
+def test_repr_and_str(test_data):
+    assert repr(test_data) == "Item('Смартфон', 30000, 10)"
+    assert str(test_data) == 'Смартфон'

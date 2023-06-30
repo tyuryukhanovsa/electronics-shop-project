@@ -22,6 +22,12 @@ class Item:
 
         Item.all.append(self)
 
+    def __repr__(self):
+        return f'{self.__class__.__name__}{self.__name, self.price, self.quantity}'
+
+    def __str__(self):
+        return str(self.__name)
+
     def calculate_total_price(self) -> float:
         """
         Рассчитывает общую стоимость конкретного товара в магазине.
@@ -43,7 +49,6 @@ class Item:
 
     @name.setter
     def name(self, new_name):
-        # self.__name = new_name[:10]
         if len(new_name) > 10:
             self.__name = new_name[:10]
         else:
@@ -57,9 +62,9 @@ class Item:
         with open(csv_file, 'r', encoding='windows-1251') as file:
             file_reader = csv.DictReader(file, delimiter=",")
             for row in file_reader:
-                name = str(row['name'])
-                price = float(row['price'])
-                quantity = int(row['quantity'])
+                name = str(row["name"])
+                price = float(row["price"])
+                quantity = int(row["quantity"])
                 cls(name, price, quantity)
 
     @staticmethod
