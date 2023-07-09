@@ -1,6 +1,8 @@
 from src.item import Item
 import pytest
 
+from src.phone import Phone
+
 
 @pytest.fixture
 def csv_file():
@@ -46,3 +48,5 @@ def test_instantiate_from_csv(csv_file):
 def test_repr_and_str(test_data):
     assert repr(test_data) == "Item('Смартфон', 30000, 10)"
     assert str(test_data) == 'Смартфон'
+
+
